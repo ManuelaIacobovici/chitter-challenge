@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<section class="keep-center" name="Logo/Signup">
+  <a class="button left logo" href="/">Chitter kind of bitter</a>
+  <% if @signed_up != true %>
+  <br />
+    Please Sign up to peep  really deep! 
+    <form action="/username_exec" method="post">
+      <input type="text" name="username" placeholder="User Name">
+      <input type="submit" value="Submit">
+    </form>
+  <% end %>
+</section>
+<hr>
+<section class="keep-center" name="Peep">
+  <% if @signed_up == true  %>
+    <form action="/peep_exec" method="post">
+      <input type="text" name="peep" placeholder="Peep for a tip!">
+      <input type="submit" value="Submit">
+    </form>
+  <% end %>
+</section>
+<hr>
+<section class="keep-center" name="Peeps">
+  <% @peeps.each do |row|  %>
+    <div style="float:right">
+      <%= row[:username] %>
+    </div>
+    <div>
+      <%= row[:peep] %>
+    </div>
+    <div style="float:right;color: rgba(0, 0, 0, 0.3)">
+     <%= row[:created_at].split('.')[0] %>
+    </div>
+    <hr>
+  <% end %>
+</section>
+</body>
+</html>
